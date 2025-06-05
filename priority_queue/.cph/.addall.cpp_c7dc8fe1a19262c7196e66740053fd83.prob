@@ -1,0 +1,1 @@
+{"name":"Local: addall","url":"c:\\Users\\HP 830-G5\\OneDrive\\Desktop\\sohoj-coding\\priority_queue\\addall.cpp","tests":[{"id":1742384681120,"input":"3\n1 2 3\n4\n1 2 3 4\n0\n\n","output":"9\n19"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\HP 830-G5\\OneDrive\\Desktop\\sohoj-coding\\priority_queue\\addall.cpp","group":"local","local":true}
