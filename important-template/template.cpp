@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 using namespace std;
 #define ll long long
@@ -107,6 +106,33 @@ vector<int> sieve()
     }
     return ans;
 }
+int spf[N];
+void sieveSPF()
+{
+    for (int i = 2; i < N; ++i)
+        spf[i] = i;
+    for (int i = 2; i * i < N; ++i)
+    {
+        if (spf[i] == i)
+        {
+            for (int j = i * i; j < N; j += i)
+            {
+                if (spf[j] == j)
+                    spf[j] = i;
+            }
+        }
+    }
+}
+map<int, int> getFactorization(int x)
+{
+    map<int, int> mp;
+    while (x != 1)
+    {
+        mp[spf[x]]++;
+        x /= spf[x];
+    }
+    return mp;
+}
 vector<int> divisors(int n)
 {
     vector<int> divisor;
@@ -154,11 +180,7 @@ int main()
     cin >> t;
     while (t--)
     {
-        vector<int> v = sieve();
-        for (auto x : v)
-        {
-            cout << x << " ";
-        }
+       
     }
     return 0;
 }
