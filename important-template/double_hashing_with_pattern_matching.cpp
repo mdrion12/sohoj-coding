@@ -81,7 +81,56 @@ pair<int, int> get_hash(int i, int j)
     hs.second = 1LL * hs.second * ipw[i].second % mod2;
     return hs;
 }
-
+// longest commong prefix between s[i...j] and s[x...y]
+int get_lcp(int i, int j, int x, int y)
+{ // O(log n)
+    int len = min(j - i + 1, y - x + 1);
+    int l = 1, r = len, ans = 0;
+    while (l <= r)
+    {
+        int mid = (l + r) >> 1;
+        if (get_hash(i, i + mid - 1) == get_hash(x, x + mid - 1))
+        {
+            ans = mid;
+            l = mid + 1;
+        }
+        else
+        {
+            r = mid - 1;
+        }
+    }
+    return ans;
+}
+string s;
+// lexicographically compare s[i...j] with s[x...y]
+// 0 => first string is equal to the second string
+// 1 => first string is greater than the second string
+// -1 => first string is less than the second string
+int compare(int i, int j, int x, int y)
+{ // O(log n)
+    int lcp = get_lcp(i, j, x, y);
+    int len1 = j - i + 1, len2 = y - x + 1;
+    if (len1 == len2 and len1 == lcp)
+    {
+        return 0;
+    }
+    else if (lcp == len1)
+    {
+        return -1;
+    }
+    else if (lcp == len2)
+    {
+        return 1;
+    }
+    else if (s[i + lcp] > s[x + lcp])
+    {
+        return 1;
+    }
+    else
+    {
+        return -1;
+    }
+}
 int32_t main()
 {
     ios_base::sync_with_stdio(0);
@@ -98,4 +147,5 @@ int32_t main()
     }
     cout << ans << '\n';
     return 0;
+
 }
